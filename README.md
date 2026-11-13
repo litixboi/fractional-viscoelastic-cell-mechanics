@@ -10,12 +10,13 @@
 
 ## Overview
 
-This repository contains the verified, reproducible research software accompanying the study on **Atomic Force Microscopy (AFM) nanoindentation and fractional viscoelastic Kelvin-Voigt contact mechanics of prostate cancer cells** (**PC-3** and **LNCaP**) subjected to chemotherapy and anti-androgen treatments (**Docetaxel** and **Bicalutamide**).
+This project investigates the biomechanical responses of prostate cancer cells to two therapeutic agents: **docetaxel** and **bicalutamide**. The study compares **LNCaP** and **PC3** cell lines, representing different metastatic characteristics, using atomic force microscopy (AFM) and cytoskeletal fluorescence imaging.
 
-The codebase extracts constitutive mechanical and rheological biomarkers of cell malignancy and drug responsiveness:
-* **$E_0$ (Pa)**: Instantaneous / relaxed Young's elastic modulus.
-* **$\tau$ (s)**: Characteristic viscoelastic relaxation time constant.
-* **$\alpha$ (dimensionless)**: Fractional derivative order ($0 \le \alpha \le 1$), quantifying power-law viscoelastic fluid-like vs. solid-like dissipation.
+A Kelvin–Voigt Fractional Derivative (KVFD) model is employed to quantify cellular viscoelastic properties, including elasticity, viscous behavior, and fluidity. By integrating mechanical measurements with DAPI and phalloidin staining, the study explores the relationship between treatment-induced biomechanical alterations and cytoskeletal organization.
+
+* **$E_0$ (Pa)**: Elastic modulus representing cellular stiffness
+* **$\tau$ (s)**: Viscous time constant
+* **$\alpha$ (dimensionless)**: Fractional derivative order ($0 \le \alpha \le 1$)
 
 This repository complies strictly with **[PLOS ONE's Materials and Software Sharing Guidelines](https://journals.plos.org/plosone/s/materials-and-software-sharing#loc-sharing-code)**:
 1. **Full Open Access**: Source code is deposited in this public archive under an OSI-approved open-source license (**MIT License**).
@@ -213,16 +214,6 @@ Verification of theoretical force calculation and optimizer output against paper
 Authors submitting manuscripts using this codebase can include the following text in their **Data Availability Statement**:
 
 > *"All code and test datasets underpinning the findings of this manuscript are publicly available without restrictions in the GitHub repository at https://github.com/litixboi/fractional-viscoelastic-cell-mechanics and permanently archived on Zenodo under DOI: 10.5281/zenodo.XXXXXXX (licensed under the Open Source Initiative-approved MIT License). Instructions for running both the original MATLAB scripts and the standalone open-source Python implementation are detailed in the repository documentation."*
-
----
-
-## Permanent Archival & Zenodo DOI
-
-To obtain a persistent digital object identifier (DOI) for manuscript citation:
-1. Log in to [Zenodo](https://zenodo.org/) using your GitHub account (`litixboi`).
-2. Navigate to **GitHub settings** on Zenodo and toggle the switch for `fractional-viscoelastic-cell-mechanics`.
-3. In this GitHub repository, create a new Release (e.g., tag `v1.0.0`).
-4. Zenodo will automatically archive the repository snapshot and assign a citable DOI.
 
 ---
 
