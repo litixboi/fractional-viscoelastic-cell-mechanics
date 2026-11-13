@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software or reproduction codebase in your research, please cite it as below."
-title: "Fractional Viscoelastic Kelvin-Voigt Contact Mechanics for AFM Nanoindentation of Prostate Cancer Cells"
+title: "Quantitative Biomechanical Mapping of Prostate Cancer Therapeutic Responses Using AFM and Cytoskeletal Imaging"
 abstract: "Investigation of biomechanical responses of prostate cancer cells (LNCaP and PC3) to docetaxel and bicalutamide using atomic force microscopy (AFM), cytoskeletal fluorescence imaging, and a Kelvin-Voigt Fractional Derivative (KVFD) viscoelastic model."
 version: "1.0.0"
 date-released: "2026-11-13"

@@ -1,4 +1,4 @@
-# Fractional Viscoelastic Kelvin-Voigt Contact Mechanics for AFM Nanoindentation of Prostate Cancer Cells
+# Quantitative Biomechanical Mapping of Prostate Cancer Therapeutic Responses Using AFM and Cytoskeletal Imaging
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10 | 3.11 | 3.12](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](https://www.python.org/)
@@ -224,7 +224,7 @@ If you utilize this codebase, models, or datasets in your academic research, ple
 ```bibtex
 @software{naserbakht2026fractional,
   author       = {Naserbakht, Nima and Monshizadeh, Arisa and Ramezani, Sayed Reza and Mojra, Afsaneh},
-  title        = {Fractional Viscoelastic Kelvin-Voigt Contact Mechanics for AFM Nanoindentation of Prostate Cancer Cells},
+  title        = {Quantitative Biomechanical Mapping of Prostate Cancer Therapeutic Responses Using AFM and Cytoskeletal Imaging},
   year         = {2026},
   publisher    = {GitHub},
   journal      = {GitHub repository},
