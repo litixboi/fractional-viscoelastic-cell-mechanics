@@ -5,6 +5,11 @@ abstract: "Investigation of biomechanical responses of prostate cancer cells (LN
 version: "1.0.0"
 date-released: "2026-11-13"
 license: "MIT"
+doi: "10.5281/zenodo.24189111"
+url: "https://doi.org/10.5281/zenodo.24189111"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24189111
 repository-code: "https://github.com/litixboi/fractional-viscoelastic-cell-mechanics"
 authors:
   - family-names: "Naserbakht"

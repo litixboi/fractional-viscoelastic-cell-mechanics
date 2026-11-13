@@ -1,5 +1,6 @@
 # Quantitative Biomechanical Mapping of Prostate Cancer Therapeutic Responses Using AFM and Cytoskeletal Imaging
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24189111.svg)](https://doi.org/10.5281/zenodo.24189111)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10 | 3.11 | 3.12](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](https://www.python.org/)
 [![MATLAB R2024a](https://img.shields.io/badge/MATLAB-R2024a%2B-orange.svg)](https://www.mathworks.com/products/matlab.html)
@@ -213,7 +214,7 @@ Verification of theoretical force calculation and optimizer output against paper
 
 Authors submitting manuscripts using this codebase can include the following text in their **Data Availability Statement**:
 
-> *"All code and test datasets underpinning the findings of this manuscript are publicly available without restrictions in the GitHub repository at https://github.com/litixboi/fractional-viscoelastic-cell-mechanics and permanently archived on Zenodo under DOI: 10.5281/zenodo.XXXXXXX (licensed under the Open Source Initiative-approved MIT License). Instructions for running both the original MATLAB scripts and the standalone open-source Python implementation are detailed in the repository documentation."*
+> *"All code and test datasets underpinning the findings of this manuscript are publicly available without restrictions in the GitHub repository at https://github.com/litixboi/fractional-viscoelastic-cell-mechanics and permanently archived on Zenodo under DOI: [10.5281/zenodo.24189111](https://doi.org/10.5281/zenodo.24189111) (licensed under the Open Source Initiative-approved MIT License). Instructions for running both the original MATLAB scripts and the standalone open-source Python implementation are detailed in the repository documentation."*
 
 ---
 
@@ -222,13 +223,13 @@ Authors submitting manuscripts using this codebase can include the following tex
 If you utilize this codebase, models, or datasets in your academic research, please cite:
 
 ```bibtex
-@software{naserbakht2026fractional,
+@software{naserbakht2026quantitative,
   author       = {Naserbakht, Nima and Monshizadeh, Arisa and Ramezani, Sayed Reza and Mojra, Afsaneh},
   title        = {Quantitative Biomechanical Mapping of Prostate Cancer Therapeutic Responses Using AFM and Cytoskeletal Imaging},
   year         = {2026},
-  publisher    = {GitHub},
-  journal      = {GitHub repository},
-  howpublished = {\url{https://github.com/litixboi/fractional-viscoelastic-cell-mechanics}},
+  publisher    = {Zenodo / GitHub},
+  doi          = {10.5281/zenodo.24189111},
+  howpublished = {\url{https://doi.org/10.5281/zenodo.24189111}},
   note         = {PLOS ONE Software-Sharing Compliant Research Codebase}
 }
 ```
