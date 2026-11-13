@@ -40,27 +40,58 @@ This repository complies strictly with **[PLOS ONE's Materials and Software Shar
 
 ## Mathematical Formulation
 
-Atomic force microscopy (AFM) nanoindentation is modeled using contact mechanics for a conical indenter tip (half-opening angle $\theta$, indenter geometry constant $K_G = \frac{1}{2 \tan\theta}$) penetrating the cell membrane at constant approach velocity $\nu$ until maximum depth at turnaround time $T_r$, followed by retraction.
+Atomic force microscopy (AFM) nanoindentation is modeled using contact mechanics for a conical indenter tip (half-opening angle $\theta$, indenter geometry factor $K_G$) penetrating the cell membrane at constant approach velocity $\nu$ until maximum depth at turnaround transition time $T_r$, followed by retraction.
 
-Under the fractional Kelvin-Voigt viscoelastic constitutive relation, the theoretical reaction force $F(t)$ is given analytically:
+Under the fractional Kelvin–Voigt viscoelastic constitutive relation, the theoretical reaction force $F(t)$ is given analytically:
 
 ### 1. Loading Phase ($0 \le t \le T_r$)
-$$F(t) = 2 K_G E_0 \nu^2 t^2 \left[ \frac{1}{2} + \frac{(t / \tau)^{-\alpha}}{\Gamma(3 - \alpha)} \right]$$
+
+$$
+F(t) = 2 K_G E_0 \nu^2 t^2 \left[ \frac{1}{2} + \frac{(t / \tau)^{-\alpha}}{\Gamma(3 - \alpha)} \right]
+$$
 
 ### 2. Unloading Phase ($t > T_r$)
-$$F(t) = 2 K_G E_0 \nu^2 \left[ \frac{t^2}{\Gamma(3 - \alpha)} \left(\frac{t}{\tau}\right)^{-\alpha} - \frac{2 T_r (t - T_r)}{\Gamma(2 - \alpha)} \left(\frac{t - T_r}{\tau}\right)^{-\alpha} + \frac{(2 T_r - t)^2}{2} \right]$$
 
-Where:
-* $K_G = \frac{1}{2 \tan\theta}$ (for $\theta = 20^\circ$, $K_G \approx 1.3737$; for $\theta = 45^\circ$, $K_G = 0.5$).
-* $\nu$ is the constant indenter approach/retract speed ($2.0\,\mu\text{m/s} = 2.0 \times 10^{-6}\text{ m/s}$).
-* $T_r = \frac{t_{\text{final}}}{2}$ is the transition time at peak indentation depth.
-* $\Gamma(\cdot)$ is the Euler Gamma function.
+$$
+F(t) = 2 K_G E_0 \nu^2 \left[ \frac{t^2}{\Gamma(3 - \alpha)} \left(\frac{t}{\tau}\right)^{-\alpha} - \frac{2 T_r (t - T_r)}{\Gamma(2 - \alpha)} \left(\frac{t - T_r}{\tau}\right)^{-\alpha} + \frac{(2 T_r - t)^2}{2} \right]
+$$
 
-The objective function minimizes the Sum of Squared Errors ($SSE$) between experimental AFM force measurements $y_i$ and theoretical model predictions $F(t_i; E_0, \tau, \alpha)$:
-$$SSE(E_0, \tau, \alpha) = \sum_{i=1}^n \left[ y_i - F(t_i; E_0, \tau, \alpha) \right]^2$$
+**Model Parameters & Physical Constants:**
 
-Goodness of fit is quantified via $R^2$ and Adjusted $R^2$:
-$$R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}, \quad R^2_{\text{adj}} = 1 - \left[\frac{(1 - R^2)(n - 1)}{n - k - 1}\right]$$
+* $K_G = \frac{1}{2\tan\theta}$ is the conical indenter geometry factor ($K_G \approx 1.3737$ for half-angle $\theta = 20^\circ$; $K_G = 0.5$ for $\theta = 45^\circ$).
+* $\nu$ is the constant indenter approach and retraction velocity ($2.0\ \mu\text{m/s} = 2.0 \times 10^{-6}\text{ m/s}$).
+* $T_r = t_{\text{final}} / 2$ is the turnaround transition time corresponding to peak indentation depth.
+* $\Gamma(\cdot)$ is the complete Euler Gamma function.
+* $E_0$ is the apparent elastic modulus representing cellular stiffness ($\text{Pa}$).
+* $\tau$ is the characteristic relaxation time constant ($\text{s}$).
+* $\alpha$ is the fractional derivative order ($0 \le \alpha \le 1$, fluidity index).
+
+### 3. Optimization Objective (Sum of Squared Errors)
+
+The model parameters $(E_0, \tau, \alpha)$ are estimated by minimizing the Sum of Squared Errors ($SSE$) between experimental AFM force measurements $y_i$ and theoretical model predictions $F(t_i; E_0, \tau, \alpha)$:
+
+$$
+SSE(E_0, \tau, \alpha) = \sum_{i=1}^{n} \left[ y_i - F(t_i; E_0, \tau, \alpha) \right]^2
+$$
+
+### 4. Goodness of Fit
+
+Model agreement with experimental curves is evaluated via the coefficient of determination ($R^2$) and the adjusted coefficient of determination ($R^2_{\text{adj}}$):
+
+$$
+R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}
+$$
+
+$$
+R^2_{\text{adj}} = 1 - \left[ \frac{(1 - R^2)(n - 1)}{n - k - 1} \right]
+$$
+
+where:
+* $n$ is the total number of experimental data points.
+* $k = 3$ is the number of fitted parameters ($E_0, \tau, \alpha$).
+* $y_i$ is the measured AFM force at time $t_i$.
+* $\hat{y}_i = F(t_i; E_0, \tau, \alpha)$ is the corresponding theoretical model prediction.
+* $\bar{y} = \frac{1}{n} \sum_{i=1}^{n} y_i$ is the empirical mean of the measured force values.
 
 ---
 
@@ -103,7 +134,7 @@ fractional-viscoelastic-cell-mechanics/
 │   │   ├── __init__.py                # Package interface
 │   │   ├── model.py                   # Core analytical model & FractionalKVModel OO class
 │   │   ├── optimizer.py               # Robust bounded Nelder-Mead / L-BFGS-B optimizer
-│   │   ├── plot.py                    # Publication-grade dual-panel Matplotlib figures
+│   │   ├── plot.py                    # Publication-grade Matplotlib curve-fitting figures
 │   │   └── cli.py                     # Command-line interface for fitting custom datasets
 │   ├── data/                          # Benchmark experimental datasets for instant testing
 │   │   ├── PC3_WoD(41).xlsx           # Benchmark PC-3 control sample 41
