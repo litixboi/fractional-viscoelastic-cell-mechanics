@@ -96,8 +96,6 @@ def main():
         plot_force_fit(
             t, y, res["y_pred"],
             title=args.title,
-            cell_condition="Analysis",
-            R2=res["R_squared"],
             save_path=args.plot
         )
 

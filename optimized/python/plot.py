@@ -1,5 +1,7 @@
 """
 Publication-Quality Visualization for AFM Nanoindentation & Viscoelastic Fits.
+Matches the official paper publication style: single-panel plot with experimental data
+and analytical fitted curve without residual subplots.
 """
 
 from typing import Optional
@@ -12,48 +14,36 @@ def plot_force_fit(
     t: np.ndarray,
     y_exp: np.ndarray,
     y_fit: np.ndarray,
-    title: str = "AFM Nanoindentation & Fractional Kelvin-Voigt Fit",
-    cell_condition: str = "PC-3 Cancer Cell",
-    R2: Optional[float] = None,
+    title: Optional[str] = None,
     save_path: Optional[str] = None,
     show: bool = False
 ) -> plt.Figure:
     """
-    Renders a dual-panel publication figure showing experimental force,
-    theoretical fit, turnaround point, and fitting residuals.
+    Renders a publication figure matching the paper's exact visual style:
+    single-panel force-versus-time curve with experimental scatter and fitted line.
     """
     t = np.asarray(t, dtype=float)
-    y_exp_nN = np.asarray(y_exp, dtype=float) * 1e9  # Convert N to nN
-    y_fit_nN = np.asarray(y_fit, dtype=float) * 1e9  # Convert N to nN
-    residuals_nN = y_exp_nN - y_fit_nN
-    Tr = t[-1] / 2.0
+    y_exp = np.asarray(y_exp, dtype=float)
+    y_fit = np.asarray(y_fit, dtype=float)
 
-    plt.style.use('seaborn-v0_8-whitegrid' if 'seaborn-v0_8-whitegrid' in plt.style.available else 'default')
-    fig, (ax1, ax2) = plt.subplots(
-        2, 1,
-        figsize=(8, 6),
-        dpi=300,
-        gridspec_kw={'height_ratios': [2.5, 1.0]},
-        sharex=True
-    )
+    fig, ax = plt.subplots(figsize=(6.5, 5.5), dpi=300)
 
-    # Panel 1: Primary fit
-    ax1.scatter(t, y_exp_nN, s=12, color='#1f77b4', alpha=0.6, label='Experimental Force (AFM)', zorder=2)
-    fit_label = f'Theoretical Fit ($R^2 = {R2:.4f}$)' if R2 is not None else 'Theoretical Fit'
-    ax1.plot(t, y_fit_nN, color='#d62728', linewidth=2.0, label=fit_label, zorder=3)
-    ax1.axvline(Tr, color='black', linestyle='--', linewidth=1.2, alpha=0.7, label=f'Turnaround $T_r = {Tr:.2f}\\,\\mathrm{{s}}$')
+    # Plot experimental data (blue dots) and fitted curve (solid red line)
+    ax.plot(t, y_exp, '.', color='#00008b', markersize=4, label='Experimental data', zorder=2)
+    ax.plot(t, y_fit, '-', color='#c00000', linewidth=2.0, label='Fitted curve', zorder=3)
 
-    ax1.set_ylabel('Force (nN)', fontsize=12, fontweight='bold')
-    ax1.set_title(f"{title} - {cell_condition}", fontsize=13, fontweight='bold', pad=10)
-    ax1.legend(loc='upper left', frameon=True, framealpha=0.9, fontsize=10)
-    ax1.grid(True, linestyle=':', alpha=0.6)
+    ax.set_xlabel('time (s)', fontsize=12)
+    ax.set_ylabel('Force (N)', fontsize=12)
 
-    # Panel 2: Residuals
-    ax2.plot(t, residuals_nN, color='#2ca02c', linewidth=1.0)
-    ax2.axhline(0, color='red', linestyle='--', linewidth=1.0, alpha=0.8)
-    ax2.set_xlabel('Time (s)', fontsize=12, fontweight='bold')
-    ax2.set_ylabel('Residuals (nN)', fontsize=10, fontweight='bold')
-    ax2.grid(True, linestyle=':', alpha=0.6)
+    # Format scientific notation on Y axis
+    ax.ticklabel_format(style='sci', scilimits=(0, 0), axis='y')
+    ax.yaxis.get_offset_text().set_fontsize(11)
+
+    ax.legend(loc='upper right', frameon=True, edgecolor='#333333', fontsize=11)
+    ax.set_xlim(left=0, right=float(t[-1]))
+
+    if title:
+        ax.set_title(title, fontsize=12, pad=10)
 
     plt.tight_layout()
 

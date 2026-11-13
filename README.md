@@ -208,6 +208,12 @@ Verification of theoretical force calculation and optimizer output against paper
 | **Max Analytical Discrepancy** | — | $< 1.0 \times 10^{-10}\text{ N}$ | $< 1.0 \times 10^{-10}\text{ N}$ | **Identical** |
 | **Execution Time** | ~40.0 s | **0.307 s** | **0.052 s** | **>130x Speedup** |
 
+### Representative Force-Time Curve & KVFD Model Fit (LNCaP Control / Without Drug)
+
+<p align="center">
+  <img src="figures/lncap_wod_fitted_curve.jpg" alt="Experimental Data vs. Fitted Curve (LNCaP Without Drug)" width="560"/>
+</p>
+
 ---
 
 ## PLOS ONE Data Availability Statement

@@ -56,27 +56,16 @@ fprintf('     alpha (Fractional Order): %.6f\n', res.alpha);
 fprintf('     R-squared               : %.6f\n', res.R_squared);
 fprintf('     Adjusted R-squared      : %.6f\n', res.adjusted_R_squared);
 
-% Generate verification figure
-fig = figure('Name', 'Fractional Kelvin-Voigt Fit - PC3_WoD(41)', 'Position', [100, 100, 900, 600]);
-subplot(2, 1, 1);
-plot(t, f_exp * 1e9, 'b.', 'MarkerSize', 6, 'DisplayName', 'Experimental Data');
+% Generate publication figure (single-panel, matching paper style)
+fig = figure('Name', 'Fractional Kelvin-Voigt Fit', 'Position', [100, 100, 650, 550]);
+plot(t, f_exp, 'b.', 'MarkerSize', 4, 'DisplayName', 'Experimental data');
 hold on;
-plot(t, f_theor_vectorized * 1e9, 'r-', 'LineWidth', 2, 'DisplayName', sprintf('Theoretical Fit (R^2 = %.4f)', calc_R2));
-xline(Tr, 'k--', 'LineWidth', 1.2, 'DisplayName', sprintf('Turnaround Tr = %.2fs', Tr));
-xlabel('Time (s)');
-ylabel('Force (nN)');
-title('AFM Nanoindentation - PC-3 Prostate Cancer Cell (Control / WoD)');
-legend('Location', 'northwest');
-grid on;
-
-subplot(2, 1, 2);
-residuals = (f_exp - f_theor_vectorized) * 1e9;
-plot(t, residuals, 'k-', 'LineWidth', 1);
-yline(0, 'r--');
-xlabel('Time (s)');
-ylabel('Residuals (nN)');
-title('Fit Residuals (Experimental - Model)');
-grid on;
+plot(t, f_theor_vectorized, 'r-', 'LineWidth', 2, 'DisplayName', 'Fitted curve');
+xlabel('time (s)');
+ylabel('Force (N)');
+legend('show', 'Location', 'northeast');
+box on;
+hold off;
 
 out_fig_dir = fullfile(script_dir, '..', 'figures');
 if ~exist(out_fig_dir, 'dir'), mkdir(out_fig_dir); end
